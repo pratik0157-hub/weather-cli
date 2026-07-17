@@ -86,7 +86,7 @@ weather-cli/
 Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:pratik0157-hub/weather-cli.git
 cd weather-cli
 ```
 
