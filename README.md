@@ -1,5 +1,7 @@
 # Weather CLI
 
+[![Python CI](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml/badge.svg)](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml)
+
 A simple command-line weather application built in Python.
 
 The user enters a city name, the program finds its latitude and longitude using the OpenWeather Geocoding API, then fetches the current weather using the OpenWeather Weather API.
