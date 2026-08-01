@@ -11,8 +11,18 @@ def choose_location(geo_pos):
             print(f"{i + 1}. {city['name']}, {city['state']}, {city['country']}")
 
         # Let the user choose the correct location
-        num = int(input("Enter the correct choice: "))
-        final_city = geo_pos[num - 1]
+        num = 0
+        while num not in range(1, len(geo_pos)+1):
+            try:
+                num = int(input("Enter the correct choice: "))
+            except ValueError:
+                print("Invalid input. Please enter a integer number.")
+            else:
+                if num in range(1,len(geo_pos)+1):
+                    final_city = geo_pos[num - 1]
+                    break
+                else:
+                    print(f"Invalid choice. Enter a number between 1 and {len(geo_pos)}.")
 
     else:
         # If there is only one match, select it directly
