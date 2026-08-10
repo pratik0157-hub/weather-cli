@@ -59,7 +59,4 @@ jobs:
             echo "One or more tests failed."
             exit 1
           fi
-          echo "All matrix tests passed."
-
-          
-          
+          echo "All matrix tests passed."        
