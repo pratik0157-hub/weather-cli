@@ -9,6 +9,9 @@ load_dotenv()
 # Get the API key from the environment variables
 API_KEY = os.getenv("API_KEY")
 
+if not API_KEY:
+    raise ValueError("API_KEY is not set")
+
 # Base URL for converting a city name to coordinates
 GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct"
 

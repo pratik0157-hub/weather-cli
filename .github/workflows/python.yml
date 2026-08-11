@@ -9,7 +9,11 @@ on:
     branches:
       - main
 
+env:
+  API_KEY: test-api-key
+
 jobs:
+
   test:
     strategy:
       matrix:
@@ -24,7 +28,6 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -43,3 +46,17 @@ jobs:
       - name: Run Tests
         run: |
           python -m pytest
+
+  test-complete:
+    if: ${{ always() }}
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check matrix results
+        run: |
+          if [[ "${{ needs.test.result }}" != "success" ]]; then
+            echo "One or more tests failed."
+            exit 1
+          fi
+          echo "All matrix tests passed."        
