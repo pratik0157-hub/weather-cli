@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import json
+
 
 def choose_location(geo_pos):
     # Check if the API returned more than one matching location
@@ -43,3 +45,7 @@ def weather_info(data):
     print("Pressure:", data["main"]["pressure"])
     print("Weather:", data["weather"][0]["description"])
     print("Wind Speed:", data["wind"]["speed"])
+
+
+def display_json(info):
+    return json.dumps(info, indent=4)

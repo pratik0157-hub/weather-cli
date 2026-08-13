@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import requests
 from config import API_KEY, WEATHER_URL
 
@@ -18,3 +17,5 @@ def get_weather(lat, lon):
     else:
         # Return None if the request fails
         return None
+
+
