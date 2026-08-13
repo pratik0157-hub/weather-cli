@@ -12,6 +12,15 @@ def test_city_is_required():
 def test_parse_arguments():
     sys.argv = ["main.py","--city", "Pune"]
 
-    city = parse_arguments()
+    args = parse_arguments()
 
-    assert city == "Pune"
+    assert args.city == "Pune"
+    assert args.json is False
+
+def test_json_argument():
+    sys.argv = ["main.py", "--city", "Pune", "--json"]
+
+    args = parse_arguments()
+
+    assert args.city == "Pune"
+    assert args.json is True
