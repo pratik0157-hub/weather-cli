@@ -7,7 +7,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser()
 
     # Add a required argument to accept the city name
-    parser.add_argument("city", help="Enter the name of the city")
+    parser.add_argument("-c","--city", required=True, help="Enter the name of the city")
 
     # Parse the arguments entered by the user
     args = parser.parse_args()
