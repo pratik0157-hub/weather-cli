@@ -215,3 +215,4 @@ def test_main_forecast(
     mock_display_forecast.assert_called_once_with(
         mock_forecast_summary.return_value
     )
+    mock_display_weather.assert_called_once_with(mock_weather.return_value)

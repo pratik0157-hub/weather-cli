@@ -2,6 +2,8 @@
 
 [![Python CI](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml/badge.svg)](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml)
 
+[![codecov](https://codecov.io/gh/pratik0157-hub/weather-cli/graph/badge.svg)](https://codecov.io/gh/pratik0157-hub/weather-cli)
+
 A modular command-line weather application built with Python and the OpenWeather APIs.
 
 The application accepts a city name, converts it into geographic coordinates using the OpenWeather Geocoding API, and retrieves current weather information and forecast data. Forecast data is processed into daily summaries containing minimum temperature, maximum temperature, and the most common weather condition.
@@ -253,6 +255,18 @@ Tests currently cover:
 
 External API requests are mocked during tests using `unittest.mock`. This allows the tests to use controlled API responses without making real requests.
 
+### Code Coverage
+
+Test coverage is measured using **pytest-cov**:
+
+```bash
+python3 -m pytest --cov=. --cov-report=term-missing
+```
+
+Coverage reports are uploaded to **Codecov** through GitHub Actions.
+
+[![codecov](https://codecov.io/gh/pratik0157-hub/weather-cli/graph/badge.svg)](https://codecov.io/gh/pratik0157-hub/weather-cli)
+
 ---
 
 ## Continuous Integration
@@ -271,7 +285,10 @@ The CI workflow uses a matrix to test the application across:
 
 Dependency caching is also used to avoid unnecessarily downloading unchanged dependencies on every CI run.
 
-This helps catch compatibility issues and prevents broken changes from being merged into `main`.
+The CI workflow also generates and uploads test coverage reports to Codecov.
+
+This helps catch compatibility issues, track test coverage, and prevent broken changes from being merged into `main`.
+
 
 ---
 
