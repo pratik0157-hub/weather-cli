@@ -265,7 +265,6 @@ python3 -m pytest --cov=. --cov-report=term-missing
 
 Coverage reports are uploaded to **Codecov** through GitHub Actions.
 
-[![codecov](https://codecov.io/gh/pratik0157-hub/weather-cli/graph/badge.svg)](https://codecov.io/gh/pratik0157-hub/weather-cli)
 
 ---
 
@@ -333,7 +332,6 @@ This workflow is used to practice development processes beyond simply writing an
 
 ### Future Improvement Ideas
 
-* [ ] Improve forecast test coverage
 * [ ] Improve terminal output
 * [ ] Unit conversion
 * [ ] Releases and version tags
