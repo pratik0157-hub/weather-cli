@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from display import choose_location
+from display import choose_location,display_weather
 
 def test_choose_single_location():
     locations = [
@@ -102,3 +102,32 @@ def test_choose_location_invalid_choice(monkeypatch):
 
     assert lat == 18.52
     assert lon == 73.85
+
+def test_display_weather(capsys):
+    data = {
+        "name": "Pune",
+        "main": {
+            "temp": 25,
+            "humidity": 70,
+            "pressure": 1012
+        },
+        "weather": [
+            {
+                "description": "clear sky"
+            }
+        ],
+        "wind": {
+            "speed": 3.5
+        }
+    }
+
+    display_weather(data)
+
+    captured = capsys.readouterr()
+
+    assert "City: Pune" in captured.out
+    assert "Temperature: 25" in captured.out
+    assert "Humidity: 70" in captured.out
+    assert "Pressure: 1012" in captured.out
+    assert "Weather: clear sky" in captured.out
+    assert "Wind Speed: 3.5" in captured.out
