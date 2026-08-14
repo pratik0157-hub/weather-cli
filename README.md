@@ -2,7 +2,8 @@
 
 [![Python CI](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml/badge.svg)](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml)
 
-[![codecov](https://codecov.io/gh/pratik0157-hub/weather-cli/graph/badge.svg)](https://codecov.io/gh/pratik0157-hub/weather-cli)
+[![codecov](https://codecov.io/gh/pratik0157-hub/weather-cli/branch/main/graph/badge.svg)](https://codecov.io/gh/pratik0157-hub/weather-cli)
+
 
 A modular command-line weather application built with Python and the OpenWeather APIs.
 
