@@ -1,6 +1,6 @@
 # Weather CLI
 
-[![Python CI](https://github.com/pratikbendgude/weather-cli/actions/workflows/python-ci.yml/badge.svg)](https://github.com/pratikbendgude/weather-cli/actions/workflows/python-ci.yml)
+[![Python CI](https://github.com/pratikbendgude/weather-cli/actions/workflows/python.yml/badge.svg)](https://github.com/pratikbendgude/weather-cli/actions/workflows/python.yml)
 
 [![codecov](https://codecov.io/gh/pratikbendgude/weather-cli/branch/main/graph/badge.svg)](https://codecov.io/gh/pratikbendgude/weather-cli)
 
