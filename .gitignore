@@ -12,3 +12,5 @@ venv/
 #Code coverage
 .coverage
 
+#report
+coverage.xml
