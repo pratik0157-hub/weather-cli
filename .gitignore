@@ -8,3 +8,7 @@ venv/
 
 # Environment variables
 .env
+
+#Code coverage
+.coverage
+

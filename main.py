@@ -11,24 +11,6 @@ def main():
     args = parse_arguments()
 
     locations = get_coordinates(args.city)
-    
-    """print("LOCATIONS:", locations)
-
-    if not locations:
-        print("Invalid input. Please try again.")
-        return
-
-    lat, lon = choose_location(locations)
-    print("COORDINATES:", lat, lon)
-
-    if args.forecast:
-        info = get_forecast_info(lat, lon)
-        print("FORECAST RESPONSE:", info)
-
-        summary = get_forecast_summary(info)
-        print("FORECAST SUMMARY:", summary)
-
-        display_forecast(summary)"""
 
     if not locations:
         print("Invalid input. Please try again.")

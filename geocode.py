@@ -8,15 +8,6 @@ def get_coordinates(city):
     url = f"{GEOCODE_URL}?q={city}&limit=5&appid={API_KEY}"
 
     # Send a GET request to the geocoding API
-    """response = requests.get(url)
-
-    print("GEOCODE STATUS:", response.status_code)
-    print("GEOCODE RESPONSE:", response.text)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return []"""
     response = requests.get(url)
 
     # Check if the request was successful
