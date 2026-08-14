@@ -17,3 +17,5 @@ GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct"
 
 # Base URL for fetching weather data using coordinates
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
+
+FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast"

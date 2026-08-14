@@ -37,7 +37,9 @@ def choose_location(geo_pos):
     return lat, lon
 
 
-def weather_info(data):
+def display_weather(data):
+    print("\n")
+    print("----------CURRENT WEATHER----------")
     # Display the weather information in a readable format
     print("City:", data["name"])
     print("Temperature:", data["main"]["temp"])
@@ -45,6 +47,20 @@ def weather_info(data):
     print("Pressure:", data["main"]["pressure"])
     print("Weather:", data["weather"][0]["description"])
     print("Wind Speed:", data["wind"]["speed"])
+    print("-----------------------------------")
+    print("\n")
+
+def display_forecast(data):
+    print("\n")
+    print("----------WEATHER FORECAST----------")
+    for date, forecast in data.items():
+        # Display the weather information in a readable format
+        print(f"Date: {date}")
+        print("Maximum Temperature:", forecast["max_temp"])
+        print("Minimum Temperature:", forecast["min_temp"])
+        print("Description:", forecast["description"])
+        print("-----------------------------------")
+    print("\n")
 
 
 def display_json(info):

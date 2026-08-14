@@ -9,7 +9,7 @@ def test_city_is_required():
     with pytest.raises(SystemExit):
         parse_arguments()
 
-def test_parse_arguments():
+def test_parse_arguments_default():
     sys.argv = ["main.py","--city", "Pune"]
 
     args = parse_arguments()
@@ -23,4 +23,20 @@ def test_json_argument():
     args = parse_arguments()
 
     assert args.city == "Pune"
+    assert args.json is True
+
+def test_forecast_argument():
+    sys.argv = ["main.py", "--city", "Pune", "--forecast"]
+
+    args = parse_arguments()
+
+    assert args.city == "Pune"
+    assert args.forecast is True
+
+def test_forecast_and_json():
+    sys.argv = ["main.py", "--city", "Pune", "--forecast", "--json"]
+
+    args = parse_arguments()
+
+    assert args.forecast is True
     assert args.json is True

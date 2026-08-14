@@ -2,59 +2,69 @@
 
 [![Python CI](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml/badge.svg)](https://github.com/pratik0157-hub/weather-cli/actions/workflows/python.yml)
 
-A simple command-line weather application built in Python.
+A modular command-line weather application built with Python and the OpenWeather APIs.
 
-The user provides a city name, the program finds its latitude and longitude using the OpenWeather Geocoding API, then fetches the current weather using the OpenWeather Current Weather API.
+The application accepts a city name, converts it into geographic coordinates using the OpenWeather Geocoding API, and retrieves current weather information and forecast data. Forecast data is processed into daily summaries containing minimum temperature, maximum temperature, and the most common weather condition.
 
-> This project was built as part of my journey to learn Python and software engineering by building real applications instead of only solving coding problems.
+This project started as a simple Python weather application and is being developed incrementally to practice real-world software engineering practices.
 
-This project is being developed to practice:
+---
 
-- Python modules
-- `argparse`
-- Working with REST APIs
-- JSON
-- Project organization
-- Error handling
-- Automated testing
-- Git and GitHub workflows
-- Continuous Integration
-- Basic software engineering practices
+## Project Highlights
+
+* Modular Python project structure
+* REST API integration using `requests`
+* Command-line interface using `argparse`
+* City geocoding and multiple-location selection
+* Current weather and forecast functionality
+* Daily forecast data processing
+* Automated testing with `pytest`
+* External API mocking with `unittest.mock`
+* API success and failure testing
+* GitHub Actions CI
+* Multi-platform CI testing
+* Multiple Python versions tested through a matrix
+* Dependency caching in CI
+* Dependabot dependency updates
+* Feature branches and Pull Requests
+* Environment variables for API credentials
 
 ---
 
 ## Features
 
-- Search weather by city name
-- City name is provided using the `--city` / `-c` command-line option
-- City name is required
-- City option can be placed anywhere in the command
-- Automatically convert city name to latitude and longitude
-- Handles multiple matching locations by allowing the user to select a location
-- Displays:
-  - Temperature
-  - Feels Like
-  - Humidity
-  - Wind Speed
-  - Weather Description
-- JSON output using the `--json` option
-- Handles invalid location selections
-- Handles API failures
-- Friendly error messages
-- Command-line interface using `argparse`
+* Search weather by city name
+* Required `--city` / `-c` command-line option
+* City option can be placed anywhere in the command
+* Convert city names into latitude and longitude
+* Handle multiple matching locations
+* Validate user location selection
+* Display:
+
+  * Temperature
+  * Feels Like
+  * Humidity
+  * Wind Speed
+  * Weather Description
+* Retrieve weather forecasts
+* Generate daily forecast summaries
+* JSON output with `--json`
+* Handle API failures
+* Provide user-friendly error messages
 
 ---
 
-## Technologies Used
+## Tech Stack
 
-- Python 3
-- `argparse`
-- `requests`
-- `pytest`
-- `python-dotenv`
-- OpenWeather Geocoding API
-- OpenWeather Current Weather API
-- GitHub Actions
+* **Language:** Python 3
+* **CLI:** `argparse`
+* **HTTP:** `requests`
+* **Testing:** `pytest`, `unittest.mock`
+* **Configuration:** `python-dotenv`
+* **APIs:** OpenWeather Geocoding, Current Weather, and Forecast APIs
+* **CI:** GitHub Actions
+* **Dependency Management:** Dependabot
+* **Version Control:** Git and GitHub
 
 ---
 
@@ -63,18 +73,20 @@ This project is being developed to practice:
 ```text
 weather-cli/
 │
-├── main.py              # Controls the flow of the program
+├── main.py              # Controls the application flow
 ├── cli.py               # Handles command-line arguments
-├── geocode.py           # Gets latitude & longitude
-├── weather.py           # Fetches weather data
-├── display.py           # Formats and displays weather data
+├── geocode.py           # Gets latitude and longitude
+├── weather.py           # Fetches current weather data
+├── forecast.py          # Fetches and processes forecast data
+├── display.py           # Handles formatting and user interaction
 ├── config.py            # Stores configuration and API constants
 │
 ├── tests/
-│   ├── test_cli.py      # Tests CLI argument parsing
-│   ├── test_display.py  # Tests location selection/display logic
-│   ├── test_geocode.py  # Tests geocoding functionality
-│   └── test_weather.py  # Tests weather API functionality
+│   ├── test_cli.py      # CLI tests
+│   ├── test_display.py  # Display and location-selection tests
+│   ├── test_geocode.py  # Geocoding tests
+│   ├── test_weather.py  # Current weather tests
+│   └── test_forecast.py # Forecast tests
 │
 ├── docs/
 │   ├── requirements.md
@@ -82,8 +94,9 @@ weather-cli/
 │   └── LLD.md
 │
 ├── .github/
-│   └── workflows/
-│       └── python.yml   # GitHub Actions CI workflow
+│   ├── workflows/
+│   │   └── python.yml   # GitHub Actions CI workflow
+│   └── dependabot.yml   # Dependabot configuration
 │
 ├── requirements.txt
 ├── README.md
@@ -128,7 +141,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 5. Create a `.env` file
+### 5. Configure the API key
 
 Create a `.env` file in the project root:
 
@@ -142,21 +155,15 @@ An example configuration is provided in `.env.example`.
 
 ## Usage
 
-### Search for weather
+### Current Weather
 
-The city must be provided using the `--city` or `-c` option.
+Search for a city using the `--city` or `-c` option:
 
 ```bash
 python3 main.py --city Pune
 ```
 
-The city option can also be used with other command-line options:
-
-```bash
-python3 main.py --city "New York"
-```
-
-### Example output
+Example output:
 
 ```text
 City: Pune
@@ -168,11 +175,11 @@ Wind Speed  : 3.5 m/s
 Weather     : Broken Clouds
 ```
 
-### Multiple matching locations
+### Multiple Locations
 
-If the entered city name matches multiple locations, the application displays the available locations and allows the user to select the required one.
+If the entered city name matches multiple locations, the application displays the available locations and allows the user to select the required location.
 
-### JSON output
+### JSON Output
 
 Use the `--json` option to receive the weather data in JSON format:
 
@@ -201,13 +208,27 @@ Example:
 }
 ```
 
-The JSON output uses the data returned by the weather API and does not require an additional API request.
+The JSON output uses the weather data already retrieved by the application and does not require an additional weather API request.
+
+---
+
+## Forecast
+
+The application also retrieves forecast data using the OpenWeather Forecast API.
+
+The API provides multiple forecast entries throughout the forecast period. The application processes these entries by grouping them by date and generates a daily summary containing:
+
+* Maximum temperature
+* Minimum temperature
+* Most common weather description
+
+This separates **data retrieval** from **data processing**, making the forecast functionality easier to test independently.
 
 ---
 
 ## Testing
 
-This project uses **pytest** for automated testing.
+The project uses **pytest** for automated testing.
 
 Run the complete test suite from the project root:
 
@@ -215,45 +236,56 @@ Run the complete test suite from the project root:
 python3 -m pytest
 ```
 
-The test suite currently covers:
+Tests currently cover:
 
-- CLI argument parsing
-- Required city argument
-- JSON command-line option
-- Location selection
-- Geocoding functionality
-- Weather API functionality
-- API failure cases
-- Invalid location selection
+* CLI argument parsing
+* Required city argument
+* JSON command-line option
+* Location selection
+* Invalid location input
+* Geocoding functionality
+* Current weather functionality
+* Forecast API functionality
+* Forecast summary processing
+* API success cases
+* API failure cases
+* Empty forecast data
 
-The project also uses GitHub Actions to run the test suite automatically.
+External API requests are mocked during tests using `unittest.mock`. This allows the tests to use controlled API responses without making real requests.
 
 ---
 
 ## Continuous Integration
 
-GitHub Actions automatically runs the test suite for:
+GitHub Actions automatically runs the test suite on:
 
-- Pushes to `main`
-- Pull requests targeting `main`
+* Pushes to `main`
+* Pull Requests targeting `main`
 
-The CI workflow uses a matrix to test the project across:
+The CI workflow uses a matrix to test the application across:
 
-- Ubuntu
-- Windows
-- macOS
+* Ubuntu
+* Windows
+* macOS
+* Multiple Python versions
 
-and currently tests multiple Python versions.
+Dependency caching is also used to avoid unnecessarily downloading unchanged dependencies on every CI run.
 
-This helps catch compatibility problems and ensures that changes do not break existing functionality before they are merged into `main`.
+This helps catch compatibility issues and prevents broken changes from being merged into `main`.
 
 ---
 
-## Git and GitHub Workflow
+## Dependency Management
 
-The project is also being used to practice a real-world Git workflow.
+The project uses **Dependabot** to monitor dependencies and create Pull Requests when updates are available.
 
-Development generally follows:
+Dependabot updates go through the same Pull Request and CI workflow, allowing dependency changes to be tested before they are merged.
+
+---
+
+## Development Workflow
+
+Development follows a feature-branch and Pull Request workflow:
 
 ```text
 main
@@ -261,6 +293,8 @@ main
 feature branch
   ↓
 make changes
+  ↓
+run tests
   ↓
 commit
   ↓
@@ -270,86 +304,24 @@ Pull Request
   ↓
 GitHub Actions
   ↓
-tests
+review
   ↓
 merge into main
 ```
 
-Features are developed in separate branches and merged into `main` through pull requests.
+This workflow is used to practice development processes beyond simply writing and pushing code.
 
 ---
 
-## What I Learned
 
-While building this project I learned:
+### Future Improvement Ideas
 
-- Making HTTP requests with `requests`
-- Working with REST APIs
-- Parsing JSON responses
-- Using `argparse` for command-line interfaces
-- Using required and optional command-line arguments
-- Using boolean CLI flags with `action="store_true"`
-- Handling multiple API results
-- Handling invalid user input
-- Handling API failures
-- Writing automated tests with `pytest`
-- Testing exceptions with `pytest.raises`
-- Organizing a Python project into modules
-- Using environment variables for API keys
-- Creating and using virtual environments
-- Writing GitHub Actions workflows
-- Running tests across multiple operating systems
-- Using Git branches and pull requests
-- Using CI to validate changes before merging
-- Improving code structure and readability
-
----
-
-## Development Progress
-
-The project is being developed incrementally, with each feature implemented, tested, documented, and merged separately.
-
-### Completed
-
-- [x] Basic weather CLI
-- [x] City geocoding
-- [x] Multiple location selection
-- [x] Current weather information
-- [x] API error handling
-- [x] Automated tests with pytest
-- [x] Required `--city` / `-c` argument
-- [x] JSON output
-- [x] GitHub Actions CI
-- [x] Multi-platform CI testing
-- [x] Feature branch and pull request workflow
-
-### Planned
-
-- [ ] Weather forecast
-- [ ] Improve terminal output
-- [ ] Unit conversion
-- [ ] Improve project test coverage
-- [ ] Dependabot
-- [ ] Releases and version tags
-- [ ] Release artifacts
-- [ ] Package as an installable CLI
-- [ ] Further project/documentation polish
-
----
-
-## Future Improvements
-
-Some planned improvements include:
-
-- Colored terminal output
-- Weather icons
-- Unit conversion
-- Weather forecast
-- Save recent searches
-- Improve test coverage
-- Dependabot dependency updates
-- GitHub releases and versioning
-- Package the application as an installable CLI
+* [ ] Improve forecast test coverage
+* [ ] Improve terminal output
+* [ ] Unit conversion
+* [ ] Releases and version tags
+* [ ] Release artifacts
+* [ ] Package the application as an installable CLI
 
 ---
 
