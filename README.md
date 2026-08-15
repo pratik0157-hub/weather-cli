@@ -113,7 +113,7 @@ weather-cli/
 ### 1. Clone the repository
 
 ```bash
-git clone git@github.com:pratik0157-hub/weather-cli.git
+git clone git@github.com:pratikbendgude/weather-cli.git
 cd weather-cli
 ```
 
@@ -148,7 +148,7 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 
 ```text
-OPENWEATHER_API_KEY=your_api_key_here
+API_KEY=your_api_key_here
 ```
 
 An example configuration is provided in `.env.example`.
@@ -299,33 +299,19 @@ Dependabot updates go through the same Pull Request and CI workflow, allowing de
 
 ---
 
-## Development Workflow
+## Releases
 
-Development follows a feature-branch and Pull Request workflow:
+Stable versions of Weather CLI are published through GitHub Releases.
 
-```text
-main
-  ↓
-feature branch
-  ↓
-make changes
-  ↓
-run tests
-  ↓
-commit
-  ↓
-push branch
-  ↓
-Pull Request
-  ↓
-GitHub Actions
-  ↓
-review
-  ↓
-merge into main
-```
+Each release includes:
 
-This workflow is used to practice development processes beyond simply writing and pushing code.
+* A version tag such as `v1.0.0`
+* Release notes describing the changes
+* A downloadable ZIP containing the project source code
+
+The downloadable ZIP contains the application source code, tests, documentation, and required project files. Local files such as `.env`, virtual environments, caches, and generated coverage data are excluded.
+
+The latest release can be found on the project's GitHub Releases page.
 
 ---
 
@@ -334,8 +320,6 @@ This workflow is used to practice development processes beyond simply writing an
 
 * [ ] Improve terminal output
 * [ ] Unit conversion
-* [ ] Releases and version tags
-* [ ] Release artifacts
 * [ ] Package the application as an installable CLI
 
 ---
