@@ -113,7 +113,7 @@ weather-cli/
 ### 1. Clone the repository
 
 ```bash
-git clone git@github.com:pratik0157-hub/weather-cli.git
+git clone git@github.com:pratikbendgude/weather-cli.git
 cd weather-cli
 ```
 
@@ -148,7 +148,7 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 
 ```text
-OPENWEATHER_API_KEY=your_api_key_here
+API_KEY=your_api_key_here
 ```
 
 An example configuration is provided in `.env.example`.
@@ -320,8 +320,6 @@ The latest release can be found on the project's GitHub Releases page.
 
 * [ ] Improve terminal output
 * [ ] Unit conversion
-* [ ] Releases and version tags
-* [ ] Release artifacts
 * [ ] Package the application as an installable CLI
 
 ---
